@@ -23,3 +23,12 @@ Now, run migrate again to create those model tables in your database:
 python manage.py shell
 #model的使用
 https://docs.djangoproject.com/en/1.11/intro/tutorial02/
+
+#django管理员
+##创建超级用户
+python manage.py createsuperuser
+##使poll应用在admin中可修改
+polls/admin.py
+from django.contrib import admin
+from .models import Question
+admin.site.register(Question)
