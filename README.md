@@ -17,3 +17,9 @@ you’re not expected to read them every time Django makes one, but they’re de
 python manage.py sqlmigrate polls 0001
 2\python manage.py migrate
 Now, run migrate again to create those model tables in your database:
+
+
+#shell模式
+python manage.py shell
+#model的使用
+https://docs.djangoproject.com/en/1.11/intro/tutorial02/
