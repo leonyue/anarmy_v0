@@ -82,5 +82,8 @@ app_name = 'polls'
 urlpatterns = ...
 <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
 
-
-
+#配置atom编辑器
+安装插件atom-runner，配置python版本（网上教程有误，缺少scopes）
+runner:
+  scopes:
+    python: "/usr/local/bin/python3.6"
