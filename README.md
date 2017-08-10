@@ -112,3 +112,12 @@ request.POST['choice']
 ##移除代码中的hardcoded URLs
  return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
  this reverse() call will return a string like '/polls/3/results/'
+
+ #Use generic views
+ 1\Convert the URLconf.
+ 2\Delete some of the old, unneeded views.
+ 3\Introduce new views based on Django’s generic views.
+ ##默认html模版
+ By default, the DetailView generic view uses a template called <app name>/<model name>_detail.html. In our case, it would use the template "polls/question_detail.html".
+ ##context变量的默认名字
+ For DetailView the question variable is provided automatically – since we’re using a Django model (Question), Django is able to determine an appropriate name for the context variable. However, for ListView, the automatically generated context variable is question_list. To override this we provide the context_object_name attribute, specifying that we want to use latest_question_list instead.
