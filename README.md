@@ -145,3 +145,19 @@ in test_was_published_recently_with_future_question it created a Question instan
 The test informs us which test failed and even the line on which the failure occurred.
 
 ##View测试
+
+
+#静态文件
+https://docs.djangoproject.com/en/1.11/intro/tutorial06/
+
+#修改admin表格
+https://docs.djangoproject.com/en/1.11/intro/tutorial07/
+
+#app复用
+https://docs.djangoproject.com/en/1.11/intro/reusable-apps/
+
+#文档
+https://docs.djangoproject.com/en/1.11/intro/whatsnext/
+
+#查询语句
+https://docs.djangoproject.com/en/1.11/ref/models/expressions/#avoiding-race-conditions-using-f
