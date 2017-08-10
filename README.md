@@ -121,3 +121,27 @@ request.POST['choice']
  By default, the DetailView generic view uses a template called <app name>/<model name>_detail.html. In our case, it would use the template "polls/question_detail.html".
  ##context变量的默认名字
  For DetailView the question variable is provided automatically – since we’re using a Django model (Question), Django is able to determine an appropriate name for the context variable. However, for ListView, the automatically generated context variable is question_list. To override this we provide the context_object_name attribute, specifying that we want to use latest_question_list instead.
+
+ #TestCase(https://docs.djangoproject.com/en/1.11/intro/tutorial05/)
+ ## Model测试 （会创建一个临时数据库用于测试）
+ class QuestionModelTests(TestCase):
+    def test_was_published_recently_with_future_question(self):
+        """
+        was_published_recently() returns False for questions whose pub_date
+        is in the future.
+        """
+        time = timezone.now() + datetime.timedelta(days=30)
+        future_question = Question(pub_date=time)
+        self.assertIs(future_question.was_published_recently(), False)
+python manage.py test polls
+
+What happened is this:
+python manage.py test polls looked for tests in the polls application
+it found a subclass of the django.test.TestCase class
+it created a special database for the purpose of testing
+it looked for test methods - ones whose names begin with test
+in test_was_published_recently_with_future_question it created a Question instance whose pub_date field is 30 days in the future
+… and using the assertIs() method, it discovered that its was_published_recently() returns True, though we wanted it to return False
+The test informs us which test failed and even the line on which the failure occurred.
+
+##View测试
