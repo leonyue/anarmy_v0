@@ -87,3 +87,28 @@ urlpatterns = ...
 runner:
   scopes:
     python: "/usr/local/bin/python3.6"
+
+#post
+##模版
+<h1>{{ question.question_text }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>
+
+A quick rundown:
+The above template displays a radio button for each question choice. The value of each radio button is the associated question choice’s ID. The name of each radio button is "choice". That means, when somebody selects one of the radio buttons and submits the form, it’ll send the POST data choice=# where # is the ID of the selected choice. This is the basic concept of HTML forms.
+forloop.counter 循环次数
+all POST forms that are targeted at internal URLs should use the {% csrf_token %} template tag.
+##post数据获取
+request.POST['choice']
+重定向HttpResponseRedirect(url)
+
+##移除代码中的hardcoded URLs
+ return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+ this reverse() call will return a string like '/polls/3/results/'
