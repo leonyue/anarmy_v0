@@ -1,8 +1,39 @@
 {% extends "blog/base.html" %}
+
+<!-- Header -->
+{% block header %}
+<h1>dj.yue's Blog</h1>
+<span class="subheading">A Simple Blog by django & bootstrap</span>
+{% endblock header %}
+
+<!-- Main Content -->
 {% block content %}
-    {% for post in posts  %}
-        <h2>{{ post.title }}</h2>
-        <p> {{ post.timestamp }}</p>
-        <p>{{ post.body }}</p>
-    {% endfor %}
-{% endblock %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+
+            {% for post in posts  %}
+
+                <div class="post-preview">
+                    <a href="{% url "blog:post" post.pk %}">
+                        <h2 class="post-title">
+                            {{ post.title }}
+                        </h2>
+                        <h3 class="post-subtitle">
+                            {{ post.subtitle }}
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="{% url "blog:about" %}">dj.yue</a> on {{ post.timestamp }}}</p>
+                </div>
+                <hr>
+            {% endfor %}
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-secondary float-right" href="#">Older Posts &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+{% endblock content %}
