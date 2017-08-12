@@ -1,6 +1,7 @@
 #personal
 *.pyc
 *.sqlite3
+__pycache__
 
 led / optimized / DLL files
 __pycache__/
