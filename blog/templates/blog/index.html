@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-
+            <div id="post_list">
             {% for post in posts  %}
 
                 <div class="post-preview">
@@ -27,13 +27,44 @@
                 </div>
                 <hr>
             {% endfor %}
+            </div>
             <!-- Pager -->
-            <div class="clearfix">
-                <a class="btn btn-secondary float-right" href="#">Older Posts &rarr;</a>
+            <div class="clearfix" id="more_button">
+                <a class="btn btn-secondary float-right" id="more">Older Posts &rarr;</a>
             </div>
         </div>
     </div>
 </div>
 
 <hr>
+
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        function generete_some_url(id){
+            return '{% url "blog:post" 1 %}'.replace('1',id);
+        }
+
+        $("#more").click(function(){
+            console.log("did click more");
+            $.getJSON('{% url 'blog:moreposts' %}',function(ret){
+                console.log("moreposts response");
+                console.log(ret);
+                for (var i = 0; i < ret.length; i++) {
+                    var post = ret[i]
+                    var info = '<div class="post-preview">'
+                    info += '<a href="' + generete_some_url(post.pk) + '">'
+                    info += '<h2 class="post-title">' + post.title + '</h2>'
+                    info += '<h3 class="post-subtitle">' + post.subtitle + '</h3>'
+                    info += '</a>'
+                    info += '<p class="post-meta">Posted by <a href="{% url "blog:about" %}">dj.yue</a> on ' + post.timestamp + '}</p>'
+                    info += '</div>' + '<hr>'
+                    // $(info).insertBefore($(#more_button))
+                    $('#post_list').append(info)
+                };
+            })
+        })
+    })
+</script>
+
 {% endblock content %}
