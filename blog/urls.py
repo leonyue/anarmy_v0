@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^post/(?P<pk>[0-9]+)/',views.Post.as_view(),name='post'),
     url(r'^contact/',views.contact,name='contact'),
     url(r'^about/',views.about,name='about'),
-    url(r'^moreposts',views.moreposts,name='moreposts'),
+    url(r'^moreposts',views.MorePost.as_view(),name='moreposts'),
     ]

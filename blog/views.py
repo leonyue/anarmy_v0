@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.template import loader
 from django.forms.models import model_to_dict
 
 from .models import BlogsPost
 
 from django.views import generic
-
-app_name = 'blog'
 
 def countPlus(request):
     if 'count' in request.session:
@@ -20,14 +19,12 @@ def resetCount(request):
     if 'count' in request.session:
         del request.session['count']
 
-def moreposts(request):
-    posts = BlogsPost.objects.order_by('-timestamp')[:2]
-    jsonPosts = []
-    for post in posts:
-        jsonPost = model_to_dict(post)
-        jsonPost['pk'] = post.pk
-        jsonPosts.append(jsonPost)
-    return JsonResponse(jsonPosts,safe=False)
+class MorePost(generic.ListView):
+    context_object_name = "posts"
+    template_name = "blog/morepost.html"
+    def get_queryset(self):
+        print("Into More post")
+        return BlogsPost.objects.order_by('-timestamp')[:2]
 
 class Index(generic.ListView):
     context_object_name = "posts"
