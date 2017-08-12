@@ -19,15 +19,15 @@ class MorePost(generic.ListView):
     context_object_name = "posts"
     template_name = "blog/morepost.html"
     def get_queryset(self):
-        print("Into More post")
-        return BlogsPost.objects.order_by('-timestamp')[:2]
+        count = countPlus(self.request)
+        return BlogsPost.objects.order_by('-timestamp')[5 * count:5 * (count+1)]
 
 class Index(generic.ListView):
     context_object_name = "posts"
     template_name = "blog/index.html"
     def get_queryset(self):
-        resetCount(request= self.request)
-        return BlogsPost.objects.order_by('-timestamp')[:2]
+        resetCount(self.request)
+        return BlogsPost.objects.order_by('-timestamp')[:5]
 
 class Post(generic.DetailView):
     model = BlogsPost
