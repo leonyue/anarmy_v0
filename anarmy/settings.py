@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'DjangoUeditor.DjangoUeditor',
     'polls.apps.PollsConfig',
     'blog.apps.BlogConfig',
     'django.contrib.admin',

@@ -1,0 +1,3 @@
+[submodule "DjangoUeditor"]
+	path = DjangoUeditor
+	url = git@github.com:leonyue/DjangoUeditor3.git

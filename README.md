@@ -161,3 +161,11 @@ https://docs.djangoproject.com/en/1.11/intro/whatsnext/
 
 #查询语句
 https://docs.djangoproject.com/en/1.11/ref/models/expressions/#avoiding-race-conditions-using-f
+
+
+#autoescape
+关闭"<"等html标志符的转义
+<% autoescape off %><end autoescape>
+
+#添加submoduole
+git submodule add git@github.com:jjz/pod-library.git pod-library
