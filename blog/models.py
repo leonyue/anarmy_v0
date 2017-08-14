@@ -11,10 +11,12 @@ class BlogsPost(models.Model):
             width=600,
             height=300,
             toolbars="full",
-            imagePath="",
-            filePath="",
-            upload_settings={"imageMaxSize":1204000},
+            imagePath='upload/image/%(year)s/%(month)s/%(day)s/%(time)s_%(rnd)s.%(extname)s',
+            filePath='upload/file/%(year)s/%(month)s/%(day)s/%(time)s_%(rnd)s.%(extname)s',
+            upload_settings={"imageMaxSize":10485760},
             settings={},command=None,
             #event_handler=myEventHander(),
             blank=True)
     timestamp = models.DateTimeField(default=timezone.now)
+
+    #{'year', 'month', 'day', 'date', 'time', 'datetime', 'rnd', 'basename': 'WechatIMG9', 'extname': 'jpeg', 'filename': 'WechatIMG9.jpeg'}
