@@ -23,7 +23,7 @@
                             {{ post.subtitle }}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="{% url "blog:about" %}">dj.yue</a> on {{ post.timestamp }}}</p>
+                    <p class="post-meta">Posted by <a href="{% url "blog:about" %}">{{ post.creator.username }}</a> on {{ post.timestamp }}}</p>
                 </div>
                 <hr>
             {% endfor %}

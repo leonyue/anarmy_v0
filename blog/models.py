@@ -1,9 +1,13 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
+
 from DjangoUeditor.DjangoUeditor.models import UEditorField
 
 # Create your models here.
 class BlogsPost(models.Model):
+    #添加创建者
+    creator = models.ForeignKey(User,on_delete=models.CASCADE,related_name="posts",to_field="id")
     title = models.CharField(max_length = 150)
     subtitle = models.CharField(max_length = 150,default = "empty subtitle")
     body = UEditorField(
