@@ -24,7 +24,7 @@ app_name = "main"
 urlpatterns = [
     url(r'^polls/', include('polls.urls')),
     url(r'^ueditor/',include('DjangoUeditor.DjangoUeditor.urls')),
-    url(r'^djangoadmin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls),
     url(r'^blog/',include('blog.urls')),
     url(r'^$',view.index,name = "index"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
