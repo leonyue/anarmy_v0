@@ -11,9 +11,9 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-            <p>专注于程序开发</p>
-            <p>主要方向：iOS,django</p>
-            <p>语言:python,objective-C,C,C++</p>
+            {% autoescape off %}
+                {{ user.extra.about }}
+            {% endautoescape %}
         </div>
     </div>
 </div>

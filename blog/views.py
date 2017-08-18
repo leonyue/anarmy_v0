@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.auth get User
 from .models import BlogsPost
 
 from django.views import generic
@@ -25,6 +25,11 @@ class MorePost(generic.ListView):
         count = countPlus(self.request)
         return BlogsPost.objects.order_by('-timestamp')[5 * count:5 * (count+1)]
 
+class About(generic.DetailView):
+    context_object_name = "userextra"
+    template_name = "blog/about.html"
+
+
 # Index数据源
 class Index(generic.ListView):
     context_object_name = "posts"
@@ -42,4 +47,7 @@ def contact(request):
     return render(request,"blog/contact.html",{})
 
 def about(request):
-    return render(request,"blog/about.html",{})
+    userid = request.GET.get('userid',0)
+    user = User.objects.get(userid)
+    print("user :",user)
+    return render(request,"blog/about.html",{"user":user})

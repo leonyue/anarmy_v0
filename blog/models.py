@@ -24,3 +24,22 @@ class BlogsPost(models.Model):
     timestamp = models.DateTimeField(default=timezone.now)
 
     #{'year', 'month', 'day', 'date', 'time', 'datetime', 'rnd', 'basename': 'WechatIMG9', 'extname': 'jpeg', 'filename': 'WechatIMG9.jpeg'}
+
+
+class UserExtra(models.Model):
+    # boundUser = models.ForeignKey(User,on_delete=models.CASCADE,related_name="extra",to_field="id",unique=True)
+    # 据说oneToone更好
+    boundUser = models.OneToOneField(User,related_name='extra',to_field="id")
+    about = UEditorField(
+            u'内容	',
+            width=600,
+            height=300,
+            toolbars="full",
+            imagePath='upload/image/%(year)s/%(month)s/%(day)s/%(time)s_%(rnd)s.%(extname)s',
+            filePath='upload/file/%(year)s/%(month)s/%(day)s/%(time)s_%(rnd)s.%(extname)s',
+            upload_settings={"imageMaxSize":10485760},
+            settings={},command=None,
+            #event_handler=myEventHander(),
+            blank=True)
+    def __str__(self):
+        return self.boundUser.username
