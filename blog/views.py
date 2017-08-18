@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.auth get User
+from django.contrib.auth.models import User
 from .models import BlogsPost
 
 from django.views import generic
@@ -47,7 +47,7 @@ def contact(request):
     return render(request,"blog/contact.html",{})
 
 def about(request):
-    userid = request.GET.get('userid',0)
-    user = User.objects.get(userid)
+    # userid = request.GET.get('userid',0)
+    user = User.objects.get(username='dj.yue')
     print("user :",user)
     return render(request,"blog/about.html",{"user":user})
