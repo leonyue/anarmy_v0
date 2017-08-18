@@ -2,6 +2,7 @@
 *.pyc
 db.sqlite3
 data/
+static/
 __pycache:__
 
 led / optimized / DLL files
